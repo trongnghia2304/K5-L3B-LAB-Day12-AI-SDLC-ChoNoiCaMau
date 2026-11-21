@@ -1,0 +1,20 @@
+# Clone sạch (AC-P4-06) · s0ra1n0 chạy thay mhoo40 · 2026-11-21 22:49 · Windows 11, Git Bash
+Thư mục trống mới, clone từ GitHub (main), chạy lệnh theo README (Windows: python thay python3, PYTHONPATH="tests;.").
+Bản giao diện = 3 lệnh: git clone → cd → python3 -m chonoi.live --mode day; server trả trang (GET / 200). Phần chơi tay đã kiểm ở docs/proof/phase-4/live-day.txt.
+
+$ git clone https://github.com/trongnghia2304/K5-L3B-LAB-Day12-AI-SDLC-ChoNoiCaMau.git
+commit: d5a1ff4 (Update report)
+python: Python 3.12.10
+$ python -m unittest discover -s tests
+Ran 272 tests in 117.680s
+
+OK
+$ python -m chonoi.headless --mode day --seed 1 --ticks 600 --out out.jsonl
+exit 0 · 66 dòng JSONL
+$ python -m chonoi.soak --seed 7 --days 10 --out soak.json
+exit 0
+days_completed 10 crashes 0
+$ python -m chonoi.live --mode day   (khởi động server, kiểm GET /)
+Mở trình duyệt tại http://127.0.0.1:8000/  (chế độ day, seed 1). Ctrl+C để dừng.
+GET / -> HTTP 200
+GET /state -> HTTP 200

@@ -64,7 +64,7 @@ python3 -m chonoi.live --mode gather --inventory-out kho.json    # chơi buổi 
 - **Giao diện mode `day` "Sạp đêm chợ nổi"** (`chonoi/web/day.js`): Shop, màn chuyển pha, tạm dừng, tổng kết theo phong cách pixel.
 - Không dùng asset ngoài (xem `CREDITS.md`). Client tự về hình khối cũ nếu asset chưa tải (thiếu `scene.js` thì cảnh nền về như cũ).
 - **Tắt ở headless:** asset chỉ nằm ở client; `runner`, `headless`, `sim/` không đọc chúng.
-- **Bằng chứng lõi vẫn đúng:** `tests/test_assets.py` (12 test: SVG hợp lệ và khớp script sinh, đủ asset cho mọi món/loài trong dữ liệu, tên sự kiện SFX khớp sim, route `/assets/` chặn truy cập ra ngoài, headless không nhắc tới asset). Toàn bộ suite 245 test OK; headless cùng seed vẫn giống từng byte.
+- **Bằng chứng lõi vẫn đúng:** `tests/test_assets.py` (12 test: SVG hợp lệ và khớp script sinh, đủ asset cho mọi món/loài trong dữ liệu, tên sự kiện SFX khớp sim, route `/assets/` chặn truy cập ra ngoài, headless không nhắc tới asset). Toàn bộ suite 272 test OK; headless cùng seed vẫn giống từng byte.
 
 ---
 

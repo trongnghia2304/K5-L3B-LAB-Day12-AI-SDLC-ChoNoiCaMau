@@ -10,7 +10,7 @@ Game 2 buổi của Út Sen trên chợ nổi Cà Mau: sáng **Lặn & Hái** (o
 | 1 | v1.0 | Lặn, oxy/ngạt/Máu/ngất, hái và bắt cá, cập bến ghi kho; quán 1 bếp, khách, phục vụ, tiền, uy tín; headless tất định, JSONL |
 | 2 | v1.1 | Cá bơi/sinh theo lịch, Cá Sấu (tuần tra, đuổi, cắn, giật lùi), 2 bếp/4 bàn, 6 món, `--mode day` 5 Ngày, Shop nâng cấp oxy/Máu, pause; mở rộng **burn** (món cháy) |
 | 3 | v1.2 | Kho **cá thể** `{id, kind, fresh}`, độ tươi hao theo giây, hàng ươn, giữ chỗ theo id, giá theo độ tươi; HUD độ tươi |
-| 4 | v1.3 | `bench_cmd` (đo FPS có render), `soak_cmd` (10 Ngày headless); 3 cảnh báo chữ + biểu tượng (thủy quái gần, oxy sắp hết, khách sắp giận) và chế độ tương phản cao (phím H); 21 hình SVG + 24 SFX tự tạo bằng code, có phụ đề (M tắt tiếng, V phụ đề); chơi trọn một Ngày trên giao diện (`live --mode day`); LICENSE MIT |
+| 4 | v1.3 | `bench_cmd` (đo FPS có render), `soak_cmd` (10 Ngày headless); 3 cảnh báo chữ + biểu tượng (thủy quái gần, oxy sắp hết, khách sắp giận) và chế độ tương phản cao (phím H); 21 hình SVG + 24 SFX tự tạo bằng code, có phụ đề (M tắt tiếng, V phụ đề); chơi trọn một Ngày trên giao diện (`live --mode day`); cảnh nền sông phù sa với camera bám Út Sen và nhà bè isometric; LICENSE MIT |
 
 Chi tiết từng thay đổi: [`CHANGELOG.md`](../CHANGELOG.md).
 
@@ -21,7 +21,7 @@ git clone https://github.com/trongnghia2304/K5-L3B-LAB-Day12-AI-SDLC-ChoNoiCaMau
 cd K5-L3B-LAB-Day12-AI-SDLC-ChoNoiCaMau
 python3 -m chonoi.live --mode day         # mở địa chỉ in ra; chơi sáng → tối → Shop
 ```
-Điều khiển: WASD/mũi tên đi · E hái/cập bến/bếp/bàn · Space bắt cá · P hoặc Esc tạm dừng · Shop: 1 / 2 mua nâng cấp, Enter đóng Shop · H tương phản cao · M tắt tiếng · V phụ đề · R chơi lại.
+Điều khiển: WASD/mũi tên đi · E hái/cập bến/bếp/bàn · Space bắt cá · P hoặc Esc tạm dừng · Shop: 1 / 2 mua nâng cấp, Enter đóng Shop · H tương phản cao · M tắt tiếng · V phụ đề · I nhãn gỡ lỗi · R chơi lại.
 Chơi từng buổi: `python3 -m chonoi.live --mode gather --inventory-out kho.json` rồi `python3 -m chonoi.live --mode quan --inventory kho.json`.
 Từ bản zip đính kèm: giải nén, `cd` vào thư mục, chạy lệnh cuối như trên.
 
@@ -38,7 +38,7 @@ Windows: dùng `PYTHONPATH="tests;."`; xem ghi chú `python3` trong [`AGENTS.md`
 | Kiểm tra | Kết quả |
 |---|---|
 | Toàn bộ test (`unittest discover`) | **272 test OK** (cả khi `QA_STRICT=1`) |
-| Benchmark `--seed 42 --duration 30` | `avg_fps` 59.98 · `p1_low_fps` 58.63 · 1800 khung / 30.01 s · `load_ms` 1934 ([`bench.json`](proof/phase-4/bench.json), máy Windows của nhóm). Mốc báo cáo: avg ≥ 60 **sát mốc (59.98; khung hình đều quanh 60, nhiều khả năng bị khóa theo vsync của màn 60 Hz — chưa kiểm trên màn tần số cao hơn)**, 1% low ≥ 30 đạt, load ≤ 10 s đạt |
+| Benchmark `--seed 42 --duration 30` | `avg_fps` 238.73 · `p1_low_fps` 146.79 · 7162 khung / 30.00 s · `load_ms` 684 ([`bench.json`](proof/phase-4/bench.json), máy Windows của nhóm, đo lại sau khi thêm cảnh nền). Mốc báo cáo: avg ≥ 60 đạt, 1% low ≥ 30 đạt, load ≤ 10 s đạt. Lần đo trước cảnh nền được 59.98 avg, khung hình đều quanh 60 — nhiều khả năng do vsync / tần số màn lúc đó, chưa kiểm |
 | Soak `--seed 7 --days 10` | `days_completed` 10 / 10, `crashes` 0; chạy lại cùng seed giống hệt (bỏ `duration_s`) ([`soak.json`](proof/phase-4/soak.json)) |
 | Ma trận AC-P4 và `verify.py --phase 4` | [`docs/verification/phase-4.md`](verification/phase-4.md) |
 
@@ -48,7 +48,7 @@ Windows: dùng `PYTHONPATH="tests;."`; xem ghi chú `python3` trong [`AGENTS.md`
 - Không làm mở rộng Phase 3 (Khách đặt trước, Dòng nước lũ) và bảng xếp hạng cục bộ.
 - Bot của `soak_cmd` chỉ cập bến ngay và để quán mở tới hết giờ, không nấu, nên `earned` mỗi Ngày là 0; soak kiểm độ bền và tính tất định qua 10 Ngày, không đo cách chơi giỏi.
 - `tests/test_warnings.py` chạy HUD thật bằng Node; máy không có Node thì các test này bị bỏ qua (skip).
-- Chỉ đo benchmark trên một máy Windows có màn 60 Hz; chưa đo trên macOS/Linux.
+- Chỉ đo benchmark trên một máy Windows; số FPS phụ thuộc vsync và tần số màn (hai lần đo cùng máy ra ~60 và ~239), chưa đo trên macOS/Linux.
 
 ## Giấy phép và nguồn
 Mã của nhóm theo [MIT](../LICENSE). Khung `chonoi/` ban đầu (headless, inputs, scenario, runner, live, web) do giảng viên cấp cho lab. Đồ họa và âm thanh do nhóm tự tạo bằng code, không dùng asset ngoài; xem [`CREDITS.md`](../CREDITS.md).

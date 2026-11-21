@@ -32,6 +32,10 @@ Bản phát hành `v1.0.0` = tag `phase-4`. Release notes: [`docs/release-notes-
 ### Chơi trọn một Ngày trên giao diện (trongnghia2304, AC-P4-11)
 - `python3 -m chonoi.live --mode day [--days 1..5]`: sáng → tối → Shop trong cửa sổ chơi; màn chuyển pha, Shop mua nâng cấp, tạm dừng, tổng kết. Bằng chứng: `docs/proof/phase-4/live-day.txt` và ảnh `live-day-*.jpg`.
 
+### Cảnh nền hai buổi và camera (trongnghia2304)
+- `chonoi/web/scene.js` (canvas, vẽ bằng code): sáng là mặt cắt sông phù sa nhiều lớp, **camera zoom bám Út Sen** (thế giới rộng hơn khung nhìn, bản đồ nhỏ, thước độ sâu); tối là **nhà bè nhìn isometric 2.5D**, phím di chuyển xoay 45° cho khớp góc nhìn (luật không đổi).
+- `index.html` chỉ thêm hook vẽ nền; thiếu `scene.js` thì vẽ như cũ. Nhãn gỡ lỗi ẩn mặc định, phím **I** để hiện; HUD quán xuống dòng theo từng món kho. Bằng chứng: `docs/proof/phase-4/scene.txt`, ảnh `scene-*.jpg`.
+
 ### Phát hành, tài liệu, test
 - `LICENSE` (MIT cho mã của nhóm); `CREDITS.md` ghi asset tự tạo bằng code, không dùng asset ngoài.
 - README: chạy từ clone sạch 3 lệnh, yêu cầu môi trường, điều khiển, test, headless, bench, soak.

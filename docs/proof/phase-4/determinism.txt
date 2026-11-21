@@ -1,0 +1,2 @@
+gather: seed 1, 600 tick, 110957 byte -> GIỐNG từng byte
+quan: seed 1, 600 tick, 37938 byte -> GIỐNG từng byte

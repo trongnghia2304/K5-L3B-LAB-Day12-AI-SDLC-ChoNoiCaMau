@@ -36,7 +36,7 @@ Yêu cầu: [`docs/prd/phase-4.md`](../prd/phase-4.md) · Test Contract **v1.3**
 - [x] **Ngay:** gắn tag `phase-3` (trên `dcefdfe` = `0d89857` + docs, code giống hệt) (đã trễ 2:30, ghi trung thực trong `docs/verification/phase-3.md`)
 - [x] (PR #25) `game.contract.json`: `contract_version: "1.3", `bench_cmd: "python3 -m chonoi.bench"`, `soak_cmd: "python3 -m chonoi.soak"`; `contract.py` nhận `"1.3"` (cùng luật v1.2, cần `freshness`)
 - [x] (PR #25) Thêm `LICENSE` (MIT cho code nhóm); rà `CREDITS.md` (asset tự tạo bằng code — ghi rõ, không dùng tài sản ngoài)
-- [x] `CHANGELOG.md` sắp lại theo **từng phase** (P1 → P4); viết release notes `docs/release-notes-v1.0.0.md`: điểm mới, cách chạy, **giới hạn đã biết** (12 file test còn ghim v1.1, bench cần trình duyệt…)
+- [x] `CHANGELOG.md` sắp lại theo **từng phase** (P1 → P4); viết release notes `docs/release-notes-v1.0.0.md`: điểm mới, cách chạy, **giới hạn đã biết** (7 module test còn ghim v1.1, bench cần trình duyệt…)
 - [ ] Bản đóng gói: `git archive --format=zip -o choNoi-v1.0.0.zip HEAD`; tạo Release `v1.0.0` + tag `phase-4` **trên cùng commit** trước 3:00
 - AC: P4-01, P4-07
 
